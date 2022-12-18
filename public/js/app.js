@@ -129,6 +129,7 @@ window.addEventListener("load", () => {
   //Register new chat room
   const createRoom = (roomName) => {
     console.info(`Creating new room:${roomName}`);
+    console.log(webrtc.createRoom(roomName));
     webrtc.createRoom(roomName);
     showChatRoom(roomName);
     postMessage(`${username} created chatroom`);
