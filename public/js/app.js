@@ -52,6 +52,20 @@ window.addEventListener("load", () => {
     localVideoEl.show();
   });
 
+  //Remote video was added
+  webrtc.on("videoAdded", (video, peer) => {
+    const id = webrtc.getDomId(peer);
+    const html = remoteVideoTemplete({ id });
+    if (remoteVideosCount === 0) {
+      remoteVideosEl.html(html);
+    } else {
+      remoteVideosEl.append(html);
+    }
+    $(`#${id}`).html(video);
+    $(`#${id} video`).addClass("ui image medium"); //make video element responsive
+    remoteVideosCount += 1;
+  });
+
   //Update Chat Message
   const updateChatMessages = () => {
     const html = chatContentTemplate({ messages });
